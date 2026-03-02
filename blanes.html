@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Dinge, die man in Blanes tun kann</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #926949;
+      --blue: #00357a;
+      --card: rgba(255, 255, 255, 0.55);
+      --border: rgba(0, 0, 0, 0.12);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+      --max: 980px;
+
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: var(--blue);
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.75;
+      background:
+        radial-gradient(1200px 650px at 50% 0%, rgba(255, 255, 255, .40), rgba(255, 255, 255, 0) 60%),
+        linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .18)),
+        url("fondo.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    @media (max-width:900px) {
+      body {
+        background-attachment: scroll
+      }
+    }
+
+    .wrap {
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+      padding: calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left));
+    }
+
+    /* NEW: top bar (back left, language right) */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: calc(12px + var(--safe-top)) calc(12px + var(--safe-right)) 12px calc(12px + var(--safe-left));
+      margin: calc(-18px - var(--safe-top)) calc(-16px - var(--safe-right)) 12px calc(-16px - var(--safe-left));
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(146, 105, 73, 0.20);
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(146, 105, 73, .70);
+      background: rgba(255, 255, 255, 0.18);
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    /* NEW: language dropdown */
+    .lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang label {
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(0, 53, 122, 0.70);
+    }
+
+    .lang select {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid rgba(146, 105, 73, 0.45);
+      border-radius: 999px;
+      padding: 8px 28px 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.20);
+      color: rgba(0, 53, 122, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      line-height: 1;
+    }
+
+    .lang .chev {
+      margin-left: -22px;
+      pointer-events: none;
+      color: rgba(0, 53, 122, 0.70);
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin: 0 0 12px;
+      text-align: center;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .hero img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02)
+    }
+
+    .hero .inner {
+      padding: 14px 14px 16px;
+      text-align: center
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-family: 'Playfair Display', serif;
+      color: rgba(0, 53, 122, .95);
+      font-size: 18px;
+      letter-spacing: .02em
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(0, 53, 122, .78);
+      font-size: 13px;
+      line-height: 1.55
+    }
+
+    .section {
+      margin-top: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 14px 10px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px)
+    }
+
+    .h {
+      margin: 0 0 10px;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 13px;
+      text-align: center
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    @media (max-width:820px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .item {
+      background: rgba(255, 255, 255, .52);
+      border: 1px solid rgba(0, 0, 0, .10);
+      border-radius: 14px;
+      padding: 12px 12px 12px
+    }
+
+    .item h3 {
+      margin: 0 0 6px;
+      font-family: 'Playfair Display', serif;
+      color: rgba(0, 53, 122, .95);
+      font-size: 14px
+    }
+
+    .item p {
+      margin: 0;
+      color: rgba(0, 53, 122, .78);
+      font-size: 12.5px;
+      line-height: 1.55
+    }
+
+    .small {
+      font-size: 12px;
+      color: rgba(0, 53, 122, .72);
+      text-align: center;
+      margin-top: 10px
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar" aria-label="Top bar">
+    <a class="back" href="index.html#info">Zurück</a>
+
+    <form class="lang" aria-label="Language selector">
+      <label for="langSel">Lang</label>
+      <select id="langSel" name="lang">
+        <option value="blanes.html" selected>DE</option>
+        <option value="blanes-en.html">EN</option>
+        <option value="blanes-es.html">ES</option>
+      </select>
+      <span class="chev">▾</span>
+    </form>
+  </header>
+
+  <main class="wrap">
+    <h1 class="title">Blanes · Tipps</h1>
+
+    <section class="hero" aria-label="Blanes intro">
+      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80"
+        alt="Blanes coastline" loading="lazy">
+      <div class="inner">
+        <h1>Dinge, die man in Blanes tun kann</h1>
+        <p>Ein paar Ideen für Strandtage, Natur, Familienaktivitäten, Kultur und Ausflüge in der Umgebung.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Strand und Natur">
+      <h2 class="h">🌊 Strand &amp; Natur</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🏖️ Platja de Blanes</h3>
+          <p>Der Hauptstrand mit feinem Sand, ruhigem Wasser, Restaurants und Spielmöglichkeiten für Kinder.</p>
+        </div>
+        <div class="item">
+          <h3>🏖️ Platja de S’Abanell</h3>
+          <p>Langer, weitläufiger Strand mit Sportbereichen, Promenade und viel Platz für Familien.</p>
+        </div>
+        <div class="item">
+          <h3>🏖️ Cala Sant Francesc (Cala Bona)</h3>
+          <p>Kleine, idyllische Bucht mit Pinien, ideal zum Schwimmen und Schnorcheln.</p>
+        </div>
+        <div class="item">
+          <h3>🏖️ Cala Treumal</h3>
+          <p>Naturbelassene, ruhigere Bucht nördlich von Blanes – perfekt für entspannte Strandtage.</p>
+        </div>
+        <div class="item">
+          <h3>🌿 Jardí Botànic Marimurtra</h3>
+          <p>Wunderschöner botanischer Garten mit spektakulärem Blick über das Mittelmeer.</p>
+        </div>
+        <div class="item">
+          <h3>🌅 Sa Palomera</h3>
+          <p>Der markante Felsen am Beginn der Costa Brava – besonders schön zum Sonnenuntergang.</p>
+        </div>
+        <div class="item">
+          <h3>🚶‍♀️ Promenade &amp; Radweg</h3>
+          <p>Ideal zum Spazierengehen, Joggen oder Fahrradfahren direkt am Meer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Aktivitäten mit Kindern">
+      <h2 class="h">👨‍👩‍👧‍👦 Aktivitäten mit Kindern</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🐬 Marineland Catalunya (Palafolls)</h3>
+          <p>Wasserpark und Tierpark mit Delfinen, Seelöwen und Kinderbereichen.</p>
+        </div>
+        <div class="item">
+          <h3>🎠 Gnomo Park (Lloret de Mar)</h3>
+          <p>Familienpark mit Minigolf, Trampolinen und Spielbereichen.</p>
+        </div>
+        <div class="item">
+          <h3>💦 Water World (Lloret de Mar)</h3>
+          <p>Großer Wasserpark mit Rutschen und Pools für jedes Alter.</p>
+        </div>
+        <div class="item">
+          <h3>🌊 Stand-Up-Paddling &amp; Kajak</h3>
+          <p>Verleih direkt an mehreren Stränden.</p>
+        </div>
+        <div class="item">
+          <h3>🤿 Schnorcheln &amp; Bootstouren</h3>
+          <p>Auch mit Glasbodenbooten – ideal für Familien.</p>
+        </div>
+        <div class="item">
+          <h3>🚤 Tretboote &amp; Banana Boat</h3>
+          <p>Klassischer Wasserspaß für Groß und Klein.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Kultur und Entdeckungen">
+      <h2 class="h">🏛️ Kultur &amp; Entdeckungen</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🏰 Castell de Sant Joan</h3>
+          <p>Burg mit traumhaftem Panoramablick über Blanes.</p>
+        </div>
+        <div class="item">
+          <h3>🏘️ Altstadt von Blanes</h3>
+          <p>Kleine Gassen, lokale Geschäfte und Wochenmärkte.</p>
+        </div>
+        <div class="item">
+          <h3>🎆 Concurs Internacional de Focs d’Artifici</h3>
+          <p>Internationaler Feuerwerkswettbewerb im Sommer (meist im Juli).</p>
+        </div>
+        <div class="item">
+          <h3>🎶 Lokale Märkte &amp; Feste</h3>
+          <p>Je nach Saison mit Musik, Essen und kulturellen Programmen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Ausflüge">
+      <h2 class="h">🚗 Ausflüge in der Umgebung</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🏝️ Tossa de Mar</h3>
+          <p>Romantisches Küstenstädtchen mit historischer Stadtmauer.</p>
+        </div>
+        <div class="item">
+          <h3>🛍️ Sant Feliu de Guíxols &amp; Platja d’Aro</h3>
+          <p>Perfekt für einen Tagesausflug.</p>
+        </div>
+        <div class="item">
+          <h3>🎨 Cadaqués &amp; Cap de Creus</h3>
+          <p>Wunderschöne Natur- und Künstlerregion für einen längeren Ausflug.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Essen">
+      <h2 class="h">🍽️ Essen &amp; Genießen</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🍴 Restaurants &amp; Chiringuitos</h3>
+          <p>An der Strandpromenade – perfekt für ein entspanntes Essen am Meer.</p>
+        </div>
+        <div class="item">
+          <h3>🍦 Eis- &amp; Crêperien</h3>
+          <p>Für den süßen Nachmittag oder einen Spaziergang am Abend.</p>
+        </div>
+        <div class="item">
+          <h3>🥕 Lokale Märkte</h3>
+          <p>Frische Produkte für Picknicks am Strand oder im Park.</p>
+        </div>
+      </div>
+
+      <p class="small">Tipp: Viele Orte sind gut zu Fuß erreichbar — für Ausflüge lohnt sich ein Mietwagen oder Taxi.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // language dropdown navigation
+    const sel = document.getElementById('langSel');
+    sel.addEventListener('change', () => {
+      window.location.href = sel.value;
+    });
+  </script>
+</body>
+
+</html>

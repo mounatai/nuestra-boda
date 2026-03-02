@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Recommended Hotels · Blanes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root{--gold:#926949;--blue:#00357a;--card:rgba(255,255,255,0.55);--border:rgba(0,0,0,0.12);--shadow:0 12px 30px rgba(0,0,0,0.08);--radius:16px;--max:980px;--safe-top: env(safe-area-inset-top, 0px);--safe-right: env(safe-area-inset-right, 0px);--safe-bottom: env(safe-area-inset-bottom, 0px);--safe-left: env(safe-area-inset-left, 0px);}
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--blue);font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7;background:radial-gradient(1200px 650px at 50% 0%, rgba(255,255,255,.40), rgba(255,255,255,0) 60%),linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.18)),url("fondo.jpg");background-size:cover;background-position:center;background-attachment:fixed}
+    @media (max-width:900px){body{background-attachment:scroll}}
+    .wrap{max-width:var(--max);margin:0 auto;padding:calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left))}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .title{font-family:'Playfair Display',serif;color:var(--gold);letter-spacing:.10em;text-transform:uppercase;font-size:14px;margin:0}
+    .back{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 12px;border-radius:999px;border:1px solid rgba(146,105,73,.70);background:rgba(255,255,255,0.18);color:var(--gold);text-decoration:none;font-weight:600;font-size:12px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-align:center}
+    .grid{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .hotel{background:rgba(255,255,255,.52);border:1px solid rgba(0,0,0,.10);border-radius:14px;overflow:hidden;box-shadow:0 10px 22px rgba(0,0,0,.06);text-align:left}
+    .photo{width:100%;height:170px;object-fit:cover;display:block}
+    .body{padding:12px 12px 14px}
+    .name{margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:600;color:rgba(0,53,122,.95);font-size:14px}
+    .meta{margin:0 0 10px;font-size:12px;color:rgba(0,53,122,.75);line-height:1.4}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .link{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 12px;border-radius:999px;border:1px solid rgba(146,105,73,.70);background:rgba(255,255,255,0.18);color:var(--gold);text-decoration:none;font-weight:600;font-size:12px}
+    .tag{font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:rgba(146,105,73,.95);border:1px solid rgba(146,105,73,.35);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.18)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <h1 class="title">Recommended hotels</h1>
+      <a class="back" href="index-en.html">Back</a>
+    </div>
+
+    <section class="card" aria-label="Intro">
+      <p style="margin:0;color:rgba(0,53,122,.78);font-size:13px;">
+        Here are a few examples. We’ll update this list soon with our specific recommendations.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Hotels list">
+      <article class="hotel">
+        <img class="photo" src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1400&q=80" alt="Hotel example 1" loading="lazy">
+        <div class="body">
+          <h2 class="name">Hotel 1 (Example)</h2>
+          <p class="meta">Blanes · Near the town center</p>
+          <div class="row">
+            <a class="link" href="#" target="_blank" rel="noopener">View</a>
+            <span class="tag">Center</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel">
+        <img class="photo" src="https://images.unsplash.com/photo-1501117716987-c8e2a20fdb60?auto=format&fit=crop&w=1400&q=80" alt="Hotel example 2" loading="lazy">
+        <div class="body">
+          <h2 class="name">Hotel 2 (Example)</h2>
+          <p class="meta">Blanes · Close to the beach</p>
+          <div class="row">
+            <a class="link" href="#" target="_blank" rel="noopener">View</a>
+            <span class="tag">Beach</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel">
+        <img class="photo" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=80" alt="Hotel example 3" loading="lazy">
+        <div class="body">
+          <h2 class="name">Hotel 3 (Example)</h2>
+          <p class="meta">Nearby · Budget option</p>
+          <div class="row">
+            <a class="link" href="#" target="_blank" rel="noopener">View</a>
+            <span class="tag">Budget</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

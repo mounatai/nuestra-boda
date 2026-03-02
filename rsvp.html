@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>RSVP · Mouna & Johannes</title>
+
+  <style>
+    :root {
+      --gold: #926949;
+      --blue: #00357a;
+      --card: rgba(255, 255, 255, 0.55);
+      --border: rgba(0, 0, 0, 0.12);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--blue);
+      line-height: 1.6;
+      background:
+        radial-gradient(1200px 650px at 50% 0%, rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0.00) 60%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+        url("fondo.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    @media (max-width:900px) {
+      body {
+        background-attachment: scroll;
+      }
+    }
+
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left));
+    }
+
+    .lang-switch {
+      position: fixed;
+      top: calc(12px + var(--safe-top));
+      right: calc(12px + var(--safe-right));
+      z-index: 50;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .lang-switch a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(0, 53, 122, 0.85);
+      border: 1px solid rgba(146, 105, 73, 0.45);
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.20);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .lang-switch a[aria-current="page"] {
+      color: rgba(146, 105, 73, 0.98);
+      border-color: rgba(146, 105, 73, 0.75);
+      background: rgba(146, 105, 73, 0.08);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 16px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .sub {
+      margin: 0 0 14px;
+      color: rgba(0, 53, 122, 0.78);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 680px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(0, 53, 122, 0.85);
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      padding: 11px 12px;
+      background: rgba(255, 255, 255, 0.65);
+      color: rgba(0, 53, 122, 0.95);
+      outline: none;
+      font: inherit;
+      line-height: 1.3;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      padding: 4px 0 2px;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(146, 105, 73, 0.45);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .choice input {
+      accent-color: var(--gold);
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .hint {
+      margin: 10px 2px 0;
+      color: rgba(0, 53, 122, 0.68);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(146, 105, 73, 0.70);
+      background: rgba(255, 255, 255, 0.18);
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn.primary {
+      background: rgba(146, 105, 73, 0.12);
+      border-color: rgba(146, 105, 73, 0.80);
+    }
+
+    .btn:hover {
+      background: rgba(146, 105, 73, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .is-hidden {
+      display: none !important;
+    }
+
+    /* Red checkbox option (same design, red) */
+    .choice.choice--red {
+      border-color: rgba(209, 27, 45, 0.55);
+      background: rgba(209, 27, 45, 0.06);
+    }
+
+    .choice.choice--red span {
+      color: #d11b2d;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .choice.choice--red input {
+      accent-color: #d11b2d;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="lang-switch" aria-label="Language switch">
+    <a href="rsvp.html" aria-current="page">DE</a>
+    <a href="rsvp-en.html">EN</a>
+    <a href="rsvp-es.html">ES</a>
+  </nav>
+
+  <main class="wrap">
+    <section class="card" aria-label="RSVP form">
+      <h1>RSVP</h1>
+      <p class="sub">Bitte bestätige deine Teilnahme bis <strong>01.05.2026</strong>.</p>
+
+      <form id="rsvpForm" method="POST"
+        action="https://script.google.com/macros/s/AKfycbwK6S9Os9V6Qwcnx9j58YM2-HfwbwQ1Lk53IXBbLglVhE6SflS4ESsRX8JBblsl57ak/exec">
+        <input type="hidden" name="kind" value="rsvp">
+        <input type="hidden" name="language" value="de">
+        <input type="hidden" name="source" value="wedding-site">
+
+        <div class="grid">
+          <div class="field full">
+            <label for="email">E‑Mail-Adresse *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="field full">
+            <label for="fullName">Vorname &amp; Nachname *</label>
+            <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="field full">
+            <label>Wirst du teilnehmen? *</label>
+            <div class="choices" role="radiogroup" aria-label="Will you attend">
+              <label class="choice">
+                <input type="radio" name="attend" value="yes" required checked />
+                <span>Ja</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Bringst du eine Begleitung (+1)?</label>
+            <div class="choices" role="radiogroup" aria-label="Plus one">
+              <label class="choice">
+                <input type="radio" name="plusOne" value="yes" />
+                <span>Ja</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="plusOne" value="no" />
+                <span>Nein</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Kinder?</label>
+            <div class="choices" role="radiogroup" aria-label="Children">
+              <label class="choice">
+                <input type="radio" name="children" value="yes" />
+                <span>Ja</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="children" value="no" />
+                <span>Nein</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field full is-hidden" id="childrenCountField">
+            <label for="childrenCount">Falls Kinder: wie viele?</label>
+            <select id="childrenCount" name="childrenCount">
+              <option value="">Bitte wählen…</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label>Ernährung / Unverträglichkeiten?</label>
+            <div class="choices" role="group" aria-label="Dietary restrictions">
+              <label class="choice">
+                <input type="checkbox" name="dietary[]" value="Vegan">
+                <span>Vegan</span>
+              </label>
+              <label class="choice">
+                <input type="checkbox" name="dietary[]" value="Vegetarian">
+                <span>Vegetarisch</span>
+              </label>
+              <label class="choice">
+                <input type="checkbox" name="dietary[]" value="Gluten-free">
+                <span>Glutenfrei</span>
+              </label>
+              <label class="choice">
+                <input type="checkbox" name="dietary[]" value="No dietary restrictions">
+                <span>Keine Einschränkungen</span>
+              </label>
+              <label class="choice">
+                <input type="checkbox" name="dietary[]" value="Other">
+                <span>Sonstiges</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="dietOther">Wenn „Sonstiges“, bitte angeben (optional)</label>
+            <textarea id="dietOther" name="dietOther" placeholder="z.B. Allergien, Details…"></textarea>
+          </div>
+
+          <div class="field full">
+            <label for="danceSong">Wenn es ein Lied gäbe, das dich garantiert auf die Tanzfläche zieht – welches wäre
+              das?</label>
+            <input id="danceSong" name="danceSong" type="text" maxlength="30" placeholder="Max. 30 Zeichen" />
+          </div>
+
+          <div class="field full">
+            <label>Updates per E‑Mail</label>
+            <div class="choices" role="group" aria-label="Email updates permission">
+              <label class="choice choice--red">
+                <!-- IMPORTANT: name must be exactly emailUpdates so Code.gs can save it -->
+                <input type="checkbox" name="emailUpdates" value="yes" />
+                <span>Ja, ihr dürft mir eine E‑Mail schicken, sobald der Tagesplan und weitere Details zur Hochzeit
+                  feststehen.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint">
+          * Pflichtfeld. Wir verwenden deine Angaben nur für die Planung.
+        </p>
+
+        <div class="actions">
+          <!-- IMPORTANT: go back to the RSVP section, not top of page -->
+          <a class="btn" href="index.html#rsvp">Zurück</a>
+          <button class="btn primary" type="submit">Absenden</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // children count show/hide
+    const childrenRadios = document.querySelectorAll('input[name="children"]');
+    const childrenCountField = document.getElementById('childrenCountField');
+    const childrenCountSelect = document.getElementById('childrenCount');
+
+    function updateChildrenCountVisibility() {
+      const selected = document.querySelector('input[name="children"]:checked')?.value;
+      const show = selected === 'yes';
+      childrenCountField.classList.toggle('is-hidden', !show);
+      childrenCountSelect.required = show;
+      if (!show) childrenCountSelect.value = "";
+    }
+    childrenRadios.forEach(r => r.addEventListener('change', updateChildrenCountVisibility));
+    updateChildrenCountVisibility();
+
+    // robust single-submit with fetch + disabled button
+    const form = document.getElementById('rsvpForm');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    let isSubmitting = false;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (isSubmitting) return;
+      isSubmitting = true;
+
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sende…';
+
+      try {
+        const fd = new FormData(form);
+        const res = await fetch(form.action, { method: 'POST', body: fd });
+        if (!res.ok) throw new Error('Network response was not ok');
+
+        window.location.href = 'rsvp-thanks.html';
+      } catch (err) {
+        console.error(err);
+        alert('Ups! Das Formular konnte nicht gesendet werden. Bitte versuche es später erneut.');
+
+        isSubmitting = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  </script>
+</body>
+
+</html>

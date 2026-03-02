@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Cosas que hacer en Blanes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root{--gold:#926949;--blue:#00357a;--card:rgba(255,255,255,0.55);--border:rgba(0,0,0,0.12);--shadow:0 12px 30px rgba(0,0,0,0.08);--radius:16px;--max:980px;--safe-top: env(safe-area-inset-top, 0px);--safe-right: env(safe-area-inset-right, 0px);--safe-bottom: env(safe-area-inset-bottom, 0px);--safe-left: env(safe-area-inset-left, 0px);}
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--blue);font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.75;background:radial-gradient(1200px 650px at 50% 0%, rgba(255,255,255,.40), rgba(255,255,255,0) 60%),linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.18)),url("fondo.jpg");background-size:cover;background-position:center;background-attachment:fixed}
+    @media (max-width:900px){body{background-attachment:scroll}}
+    .wrap{max-width:var(--max);margin:0 auto;padding:calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left))}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .title{font-family:'Playfair Display',serif;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-size:14px;margin:0}
+    .back{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 12px;border-radius:999px;border:1px solid rgba(146,105,73,.70);background:rgba(255,255,255,0.18);color:var(--gold);text-decoration:none;font-weight:600;font-size:12px}
+    .hero{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    .hero img{width:100%;height:220px;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
+    .hero .inner{padding:14px 14px 16px;text-align:center}
+    .hero h1{margin:0 0 8px;font-family:'Playfair Display',serif;color:rgba(0,53,122,.95);font-size:18px;letter-spacing:.02em}
+    .hero p{margin:0;color:rgba(0,53,122,.78);font-size:13px;line-height:1.55}
+    .section{margin-top:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 14px 10px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    .h{margin:0 0 10px;font-family:'Playfair Display',serif;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-size:13px;text-align:center}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:820px){.grid{grid-template-columns:1fr}}
+    .item{background:rgba(255,255,255,.52);border:1px solid rgba(0,0,0,.10);border-radius:14px;padding:12px 12px 12px}
+    .item h3{margin:0 0 6px;font-family:'Playfair Display',serif;color:rgba(0,53,122,.95);font-size:14px}
+    .item p{margin:0;color:rgba(0,53,122,.78);font-size:12.5px;line-height:1.55}
+    .small{font-size:12px;color:rgba(0,53,122,.72);text-align:center;margin-top:10px}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <h1 class="title">Blanes · Ideas</h1>
+      <a class="back" href="index-es.html">Volver</a>
+    </div>
+
+    <section class="hero" aria-label="Blanes intro">
+      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80" alt="Costa de Blanes" loading="lazy">
+      <div class="inner">
+        <h1>Cosas que hacer en Blanes</h1>
+        <p>Algunas ideas para playa, naturaleza, actividades en familia, cultura y excursiones cerca.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Playa y naturaleza">
+      <h2 class="h">🌊 Playa &amp; Naturaleza</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🏖️ Platja de Blanes</h3>
+          <p>La playa principal con arena fina, aguas tranquilas, restaurantes y opciones para niños.</p>
+        </div>
+        <div class="item">
+          <h3>🏖️ Platja de S’Abanell</h3>
+          <p>Playa larga y amplia con zonas deportivas, paseo marítimo y mucho espacio para familias.</p>
+        </div>
+        <div class="item">
+          <h3>🏖️ Cala Sant Francesc (Cala Bona)</h3>
+          <p>Pequeña cala con pinos, ideal para nadar y hacer snorkel.</p>
+        </div>
+        <div class="item">
+          <h3>🏖️ Cala Treumal</h3>
+          <p>Cala más tranquila y natural al norte de Blanes—perfecta para un día relajado.</p>
+        </div>
+        <div class="item">
+          <h3>🌿 Jardí Botànic Marimurtra</h3>
+          <p>Jardín botánico precioso con vistas espectaculares al Mediterráneo.</p>
+        </div>
+        <div class="item">
+          <h3>🌅 Sa Palomera</h3>
+          <p>La roca más emblemática al inicio de la Costa Brava—muy bonita al atardecer.</p>
+        </div>
+        <div class="item">
+          <h3>🚶‍♀️ Paseo marítimo &amp; carril bici</h3>
+          <p>Ideal para pasear, correr o ir en bici junto al mar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Actividades con niños">
+      <h2 class="h">👨‍👩‍👧‍👦 Actividades con niños</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🐬 Marineland Catalunya (Palafolls)</h3>
+          <p>Parque acuático y de animales con delfines, leones marinos y zonas infantiles.</p>
+        </div>
+        <div class="item">
+          <h3>🎠 Gnomo Park (Lloret de Mar)</h3>
+          <p>Parque familiar con minigolf, camas elásticas y zonas de juego.</p>
+        </div>
+        <div class="item">
+          <h3>💦 Water World (Lloret de Mar)</h3>
+          <p>Gran parque acuático con toboganes y piscinas para todas las edades.</p>
+        </div>
+        <div class="item">
+          <h3>🌊 Paddle surf &amp; kayak</h3>
+          <p>Alquiler disponible en varias playas.</p>
+        </div>
+        <div class="item">
+          <h3>🤿 Snorkel &amp; paseos en barco</h3>
+          <p>También hay barcos con fondo de cristal—ideal para familias.</p>
+        </div>
+        <div class="item">
+          <h3>🚤 Hidropedales &amp; Banana Boat</h3>
+          <p>Diversión acuática clásica para peques y mayores.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Cultura y descubrimientos">
+      <h2 class="h">🏛️ Cultura &amp; Descubrimientos</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🏰 Castell de Sant Joan</h3>
+          <p>Castillo con vistas panorámicas increíbles sobre Blanes.</p>
+        </div>
+        <div class="item">
+          <h3>🏘️ Casco antiguo de Blanes</h3>
+          <p>Callejuelas, tiendas locales y mercados semanales.</p>
+        </div>
+        <div class="item">
+          <h3>🎆 Concurso internacional de fuegos artificiales</h3>
+          <p>Evento en verano (normalmente en julio).</p>
+        </div>
+        <div class="item">
+          <h3>🎶 Mercados y fiestas locales</h3>
+          <p>Según la temporada: música, comida y actividades culturales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Excursiones">
+      <h2 class="h">🚗 Excursiones cerca</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🏝️ Tossa de Mar</h3>
+          <p>Pueblo costero romántico con muralla histórica.</p>
+        </div>
+        <div class="item">
+          <h3>🛍️ Sant Feliu de Guíxols &amp; Platja d’Aro</h3>
+          <p>Perfecto para una excursión de un día.</p>
+        </div>
+        <div class="item">
+          <h3>🎨 Cadaqués &amp; Cap de Creus</h3>
+          <p>Naturaleza preciosa y zona artística para una salida más larga.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Comer">
+      <h2 class="h">🍽️ Comer &amp; disfrutar</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>🍴 Restaurantes &amp; chiringuitos</h3>
+          <p>En el paseo marítimo—perfecto para comer tranquilo frente al mar.</p>
+        </div>
+        <div class="item">
+          <h3>🍦 Heladerías &amp; creperías</h3>
+          <p>Para una tarde dulce o un paseo al atardecer.</p>
+        </div>
+        <div class="item">
+          <h3>🥕 Mercados locales</h3>
+          <p>Productos frescos para picnic en la playa o en el parque.</p>
+        </div>
+      </div>
+
+      <p class="small">Consejo: muchos sitios están cerca a pie — para excursiones, puede venir bien alquilar coche o ir en taxi.</p>
+    </section>
+  </main>
+</body>
+</html>

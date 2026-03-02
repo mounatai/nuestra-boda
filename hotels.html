@@ -99,44 +99,6 @@
       white-space: nowrap;
     }
 
-    /* NEW: language dropdown */
-    .lang {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .lang label {
-      font-size: 10px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(0, 53, 122, 0.70);
-    }
-
-    .lang select {
-      appearance: none;
-      -webkit-appearance: none;
-      border: 1px solid rgba(146, 105, 73, 0.45);
-      border-radius: 999px;
-      padding: 8px 28px 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.20);
-      color: rgba(0, 53, 122, 0.85);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      line-height: 1;
-    }
-
-    .lang .chev {
-      margin-left: -22px;
-      pointer-events: none;
-      color: rgba(0, 53, 122, 0.70);
-      font-size: 12px;
-      line-height: 1;
-    }
 
     .title {
       font-family: 'Playfair Display', serif;
@@ -247,15 +209,6 @@
   <header class="topbar" aria-label="Top bar">
     <a class="back" href="index.html#info">←</a>
 
-    <form class="lang" aria-label="Language selector">
-      <label for="langSel">Lang</label>
-      <select id="langSel" name="lang">
-        <option value="hotels.html" selected>DE</option>
-        <option value="hotels-en.html">EN</option>
-        <option value="hotels-es.html">ES</option>
-      </select>
-      <span class="chev">▾</span>
-    </form>
   </header>
 
   <main class="wrap">

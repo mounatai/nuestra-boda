@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -10,38 +11,191 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
     rel="stylesheet">
   <style>
-    :root{--gold:#926949;--blue:#00357a;--card:rgba(255,255,255,0.55);--border:rgba(0,0,0,0.12);--shadow:0 12px 30px rgba(0,0,0,0.08);--radius:16px;--max:980px;--safe-top: env(safe-area-inset-top, 0px);--safe-right: env(safe-area-inset-right, 0px);--safe-bottom: env(safe-area-inset-bottom, 0px);--safe-left: env(safe-area-inset-left, 0px);}
-    *{box-sizing:border-box}
-    body{margin:0;color:var(--blue);font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.75;background:radial-gradient(1200px 650px at 50% 0%, rgba(255,255,255,.40), rgba(255,255,255,0) 60%),linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.18)),url("fondo.jpg");background-size:cover;background-position:center;background-attachment:fixed}
-    @media (max-width:900px){body{background-attachment:scroll}}
-    .wrap{max-width:var(--max);margin:0 auto;padding:calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left))}
-    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-    .title{font-family:'Playfair Display',serif;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-size:14px;margin:0}
-    .back{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 12px;border-radius:999px;border:1px solid rgba(146,105,73,.70);background:rgba(255,255,255,0.18);color:var(--gold);text-decoration:none;font-weight:600;font-size:12px}
-    .hero{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-    .hero img{width:100%;height:220px;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
-    .hero .inner{padding:14px 14px 16px;text-align:center}
-    .hero h1{margin:0 0 8px;font-family:'Playfair Display',serif;color:rgba(0,53,122,.95);font-size:18px;letter-spacing:.02em}
-    .hero p{margin:0;color:rgba(0,53,122,.78);font-size:13px;line-height:1.55}
-    .section{margin-top:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 14px 10px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-    .h{margin:0 0 10px;font-family:'Playfair Display',serif;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-size:13px;text-align:center}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:820px){.grid{grid-template-columns:1fr}}
-    .item{background:rgba(255,255,255,.52);border:1px solid rgba(0,0,0,.10);border-radius:14px;padding:12px 12px 12px}
-    .item h3{margin:0 0 6px;font-family:'Playfair Display',serif;color:rgba(0,53,122,.95);font-size:14px}
-    .item p{margin:0;color:rgba(0,53,122,.78);font-size:12.5px;line-height:1.55}
-    .small{font-size:12px;color:rgba(0,53,122,.72);text-align:center;margin-top:10px}
+    :root {
+      --gold: #926949;
+      --blue: #00357a;
+      --card: rgba(255, 255, 255, 0.55);
+      --border: rgba(0, 0, 0, 0.12);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+      --max: 980px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      color: var(--blue);
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.75;
+      background: radial-gradient(1200px 650px at 50% 0%, rgba(255, 255, 255, .40), rgba(255, 255, 255, 0) 60%), linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .18)), url("fondo.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed
+    }
+
+    @media (max-width:900px) {
+      body {
+        background-attachment: scroll
+      }
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left))
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin: 0
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 9px 12px;
+      margin-left: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(146, 105, 73, .70);
+      background: rgba(255, 255, 255, 0.18);
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 12px
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px)
+    }
+
+    .hero img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02)
+    }
+
+    .hero .inner {
+      padding: 14px 14px 16px;
+      text-align: center
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-family: 'Playfair Display', serif;
+      color: rgba(0, 53, 122, .95);
+      font-size: 18px;
+      letter-spacing: .02em
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(0, 53, 122, .78);
+      font-size: 13px;
+      line-height: 1.55
+    }
+
+    .section {
+      margin-top: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 14px 10px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px)
+    }
+
+    .h {
+      margin: 0 0 10px;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 13px;
+      text-align: center
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    @media (max-width:820px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .item {
+      background: rgba(255, 255, 255, .52);
+      border: 1px solid rgba(0, 0, 0, .10);
+      border-radius: 14px;
+      padding: 12px 12px 12px
+    }
+
+    .item h3 {
+      margin: 0 0 6px;
+      font-family: 'Playfair Display', serif;
+      color: rgba(0, 53, 122, .95);
+      font-size: 14px
+    }
+
+    .item p {
+      margin: 0;
+      color: rgba(0, 53, 122, .78);
+      font-size: 12.5px;
+      line-height: 1.55
+    }
+
+    .small {
+      font-size: 12px;
+      color: rgba(0, 53, 122, .72);
+      text-align: center;
+      margin-top: 10px
+    }
   </style>
 </head>
+
 <body>
   <main class="wrap">
     <div class="top">
       <h1 class="title">Blanes · Ideas</h1>
-      <a class="back" href="index-es.html">Volver</a>
+      <a class="back" href="index-es.html">←</a>
     </div>
 
     <section class="hero" aria-label="Blanes intro">
-      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80" alt="Costa de Blanes" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80"
+        alt="Costa de Blanes" loading="lazy">
       <div class="inner">
         <h1>Cosas que hacer en Blanes</h1>
         <p>Algunas ideas para playa, naturaleza, actividades en familia, cultura y excursiones cerca.</p>
@@ -169,8 +323,10 @@
         </div>
       </div>
 
-      <p class="small">Consejo: muchos sitios están cerca a pie — para excursiones, puede venir bien alquilar coche o ir en taxi.</p>
+      <p class="small">Consejo: muchos sitios están cerca a pie — para excursiones, puede venir bien alquilar coche o ir
+        en taxi.</p>
     </section>
   </main>
 </body>
+
 </html>

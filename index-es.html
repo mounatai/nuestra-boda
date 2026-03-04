@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Save The Date · Mouna & Johannes</title>
+    <title>Reserva la fecha · Mouna & Johannes</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,6 +35,12 @@
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         html {
             -webkit-text-size-adjust: 100%;
         }
@@ -44,7 +50,7 @@
             color: var(--blue);
             font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             line-height: 1.8;
-            overflow-x: hidden;
+
             background:
                 radial-gradient(1200px 650px at 50% 0%, rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0.00) 60%),
                 linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
@@ -61,41 +67,80 @@
         }
 
         .wrap {
+            width: 100%;
             max-width: var(--max);
             margin: 0 auto;
             padding: calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left));
             text-align: center;
         }
 
-        /* language switch (top-right) */
+        /* ===== Language dropdown (premium) ===== */
         .lang-switch {
             position: fixed;
             top: calc(12px + var(--safe-top));
             right: calc(12px + var(--safe-right));
-            z-index: 50;
-            display: flex;
-            gap: 8px;
+            z-index: 80;
+        }
+
+        .lang-pill {
+            position: relative;
+            display: inline-flex;
             align-items: center;
-        }
-
-        .lang-switch a {
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: rgba(0, 53, 122, 0.85);
-            border: 1px solid rgba(146, 105, 73, 0.45);
-            padding: 7px 10px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.20);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(146, 105, 73, 0.55);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .lang-switch a[aria-current="page"] {
-            color: rgba(146, 105, 73, 0.98);
-            border-color: rgba(146, 105, 73, 0.75);
-            background: rgba(146, 105, 73, 0.08);
+        .lang-select {
+            appearance: none;
+            -webkit-appearance: none;
+            border: 0;
+            background: transparent;
+            outline: none;
+            padding: 9px 36px 9px 14px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(0, 53, 122, 0.88);
+            cursor: pointer;
+        }
+
+        .lang-select:focus-visible {
+            box-shadow: 0 0 0 3px rgba(146, 105, 73, 0.25);
+        }
+
+        .lang-chevron {
+            position: absolute;
+            right: 12px;
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+            stroke: rgba(146, 105, 73, 0.95);
+            stroke-width: 2.2;
+            fill: none;
+            opacity: 0.95;
+        }
+
+        @media (max-width:520px) {
+            .lang-switch {
+                position: static;
+                display: flex;
+                justify-content: center;
+                margin: 0 0 10px;
+            }
+        }
+
+        /* Anchors */
+        .anchor {
+            position: relative;
+            top: calc(-64px - var(--safe-top));
+            height: 0;
+            visibility: hidden;
         }
 
         .lined-title {
@@ -131,6 +176,28 @@
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--gold);
+        }
+
+        .venue-name {
+            margin: 8px 0 4px;
+            font-family: 'Playfair Display', serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: none;
+            color: rgba(0, 53, 122, 0.95);
+            line-height: 1.3;
+        }
+
+        .venue-address {
+            margin: 0 0 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            color: rgba(0, 53, 122, 0.95);
+            line-height: 1.45;
         }
 
         .script {
@@ -307,13 +374,62 @@
             background: rgba(146, 105, 73, 0.45);
         }
 
+        /* Mobile: keep phrase ONE line, keep countdown one row */
+        @media (max-width: 520px) {
+            .countdown-phrase {
+                white-space: nowrap;
+                font-size: 11px;
+                letter-spacing: 0.08em;
+            }
+
+            .countdown-phrase.lined-title::before,
+            .countdown-phrase.lined-title::after {
+                width: 22px;
+            }
+
+            .timer {
+                flex-wrap: nowrap;
+                gap: 6px;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .unit {
+                min-width: 0;
+                flex: 1 1 0;
+            }
+
+            .icon-sep {
+                display: block;
+                width: 12px;
+                height: 12px;
+                margin-top: 8px;
+                opacity: 0.88;
+            }
+
+            .icon-sep svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .value {
+                font-size: 22px;
+            }
+
+            .label {
+                font-size: 9px;
+                letter-spacing: 0.10em;
+            }
+        }
+
         .polaroids {
+            width: 100%;
+            margin: 18px auto 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             align-items: start;
             justify-items: center;
-            margin-top: 18px;
         }
 
         @media (max-width:820px) {
@@ -324,6 +440,8 @@
 
         .polaroid {
             width: min(380px, 92vw);
+            margin-left: auto;
+            margin-right: auto;
             background: rgba(255, 255, 255, 0.85);
             border: 1px solid rgba(0, 0, 0, 0.10);
             border-radius: 14px;
@@ -372,37 +490,43 @@
             padding: 0 6px;
         }
 
+        /* ===== WAS UNS VERBINDET: curved connector line with heart ===== */
         .connect {
             margin-top: 34px;
         }
 
         .connect-row {
-            width: min(900px, 96vw);
+            position: relative;
+            width: min(760px, 90vw);
             margin: 16px auto 0;
             display: grid;
-            grid-template-columns: repeat(7, auto);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             justify-content: center;
             align-items: start;
-            gap: 0;
+            gap: 10px;
+            padding: 0 0 0;
+        }
+
+        /* remove old vertical separators if any still in HTML */
+        .v-sep {
+            display: none !important;
         }
 
         .connect-item {
-            min-width: 150px;
-            padding: 10px 14px 6px;
+            min-width: 0;
+            padding: 2px 2px 2px;
+            position: relative;
+            z-index: 2;
         }
 
-        .v-sep {
-            width: 1px;
-            height: 64px;
-            margin: 16px 0 0;
-            background: rgba(146, 105, 73, 0.35);
-            opacity: 0.9;
+        .connect-sep {
+            display: none;
         }
 
         .connect-img {
-            width: 82px;
-            height: 82px;
-            margin: 0 auto 10px;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 3px;
             display: block;
             object-fit: contain;
             background: transparent !important;
@@ -415,26 +539,58 @@
             color: rgba(0, 53, 122, 0.95);
             letter-spacing: 0.02em;
             line-height: 1.25;
+            text-align: center;
         }
+
 
         @media (max-width:820px) {
             .connect-row {
-                grid-template-columns: 1fr;
-                width: min(520px, 92vw);
-            }
-
-            .v-sep {
-                width: 70%;
-                height: 1px;
-                margin: 10px auto;
-                background: rgba(146, 105, 73, 0.28);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: min(420px, 94vw);
+                gap: 12px 8px;
             }
 
             .connect-item {
-                min-width: auto;
+                padding: 0;
+            }
+
+            .connect-sep {
+                display: none;
+            }
+
+            .connect-img {
+                width: 44px;
+                height: 44px;
+                margin: 0 auto 2px;
+                opacity: 0.9;
+            }
+
+            .connect-cap {
+                font-size: 12px;
             }
         }
 
+        @media (max-width:520px) {
+            .connect-row {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                width: min(380px, 96vw);
+                gap: 6px;
+            }
+
+            .connect-img {
+                width: 30px;
+                height: 30px;
+                margin: 0 auto 2px;
+            }
+
+            .connect-cap {
+                font-size: 9px;
+                line-height: 1.15;
+                letter-spacing: 0.01em;
+            }
+        }
+
+        /* RSVP / buttons / calendar / maps / info ... (unchanged from your original) */
         .rsvp-section {
             margin-top: 44px;
             text-align: center;
@@ -452,6 +608,16 @@
         @media (max-width:520px) {
             .btn-row {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:520px) {
+            .venue-name {
+                font-size: 11px;
+            }
+
+            .venue-address {
+                font-size: 9px;
             }
         }
 
@@ -482,7 +648,6 @@
             transform: translateY(-1px);
         }
 
-        /* ===== Calendar: elegant + centered number inside heart ===== */
         .cal-wrap {
             width: min(620px, 94vw);
             margin: 0 auto;
@@ -553,7 +718,6 @@
             padding: 10px 0;
         }
 
-        /* subtle grid lines */
         .month-cal td+td {
             box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.06);
         }
@@ -571,7 +735,6 @@
             color: rgba(0, 53, 122, 0.98);
         }
 
-        /* Same-shape glow + main heart */
         .marked .heart-glow,
         .marked .heart-outline {
             position: absolute;
@@ -612,7 +775,6 @@
             stroke-linejoin: round;
         }
 
-        /* Center the number exactly in the heart */
         .marked .num {
             position: absolute;
             left: 50%;
@@ -621,12 +783,6 @@
             z-index: 2;
             font-weight: 800;
             color: rgba(0, 53, 122, 0.98);
-        }
-
-        /* optional: soften weekends a touch */
-        .month-cal td:last-child,
-        .month-cal td:nth-child(6) {
-            color: rgba(0, 53, 122, 0.78);
         }
 
         .venue-section {
@@ -641,7 +797,7 @@
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.10);
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
-            background: rgba(255,  255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.55);
         }
 
         .map-postcard iframe {
@@ -652,7 +808,6 @@
             filter: saturate(1.05) contrast(1.02);
         }
 
-        /* --- info cards (Hotels / Things to do) --- */
         .info-links-section {
             margin-top: 22px;
             text-align: center;
@@ -748,22 +903,28 @@
 </head>
 
 <body>
-    <nav class="lang-switch" aria-label="Language switch">
-        <a href="index.html">DE</a>
-        <a href="index-en.html">EN</a>
-        <a href="index-es.html" aria-current="page">ES</a>
-    </nav>
-
     <main class="wrap">
-        <div class="top-title lined-title" aria-label="Save The Date title">SAVE THE DATE</div>
+        <nav class="lang-switch" aria-label="Selector de idioma">
+            <div class="lang-pill">
+                <select id="langSel" class="lang-select" aria-label="Seleccionar idioma">
+                    <option value="index.html">DE</option>
+                    <option value="index-es.html" selected>ES</option>
+                </select>
+                <svg class="lang-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" />
+                </svg>
+            </div>
+        </nav>
+
+        <div class="top-title lined-title" aria-label="Reserva la fecha">RESERVA LA FECHA</div>
 
         <div class="script names">
-            <span>Mouna</span><span class="amp">&amp;</span><span>Johannes</span>
+            <span>Mouna </span><span class="amp">&amp;</span><span> Johannes</span>
         </div>
 
-        <div class="headline" aria-label="Quote">
-            <span class="line">“El amor no es el choque de dos mundos —</span>
-            <span class="line line2">es el valor de construir uno juntos.”</span>
+        <div class="headline" aria-label="Frase">
+            <span class="line">“El amor no es el encuentro de dos mundos;</span>
+            <span class="line line2">es la valentía de crear uno en común.”</span>
         </div>
 
         <div class="date-place">
@@ -772,9 +933,9 @@
             <span>Blanes, España</span>
         </div>
 
-        <section class="countdown-wrap" aria-label="Countdown">
+        <section class="countdown-wrap" aria-label="Cuenta atrás">
             <div class="brace-frame">
-                <div class="timer" aria-live="polite" aria-label="Countdown timer">
+                <div class="timer" aria-live="polite" aria-label="Temporizador de cuenta atrás">
                     <div class="unit">
                         <div class="value" id="cd-days">—</div>
                         <div class="label">Días</div>
@@ -820,21 +981,21 @@
                 </div>
             </div>
 
-            <div class="countdown-phrase lined-title">ONE SECOND CLOSER TO FOREVER</div>
+            <div class="countdown-phrase lined-title">UN SEGUNDO MÁS CERCA DEL PARA SIEMPRE</div>
         </section>
 
-        <section class="polaroids" aria-label="Photos">
+        <section class="polaroids" aria-label="Fotos">
             <figure class="polaroid polaroid--left">
                 <img src="foto1.jpg" alt="Foto 1" loading="lazy" />
                 <figcaption class="caption">
-                    “Cuando ella planeó el crimen perfecto, él supo: esta mujer es mi equipo.”
+                    “Entre true crime y true love empezó su historia.”
                 </figcaption>
             </figure>
 
             <figure class="polaroid polaroid--right">
                 <img src="foto2.jpg" alt="Foto 2" loading="lazy" />
                 <figcaption class="caption">
-                    “Desde entonces comparten aventuras, café por la mañana &amp; el objetivo de encontrar la mejor hamburguesa.”
+                    “Desde entonces comparten aventuras, cafés y la misión de encontrar la mejor hamburguesa.”
                 </figcaption>
             </figure>
         </section>
@@ -842,27 +1003,21 @@
         <section class="connect" aria-label="Lo que nos une">
             <div class="top-title lined-title">LO QUE NOS UNE</div>
 
-            <div class="connect-row" aria-label="Icons row">
+            <div class="connect-row" aria-label="Fila de iconos">
                 <div class="connect-item">
                     <img class="connect-img" src="world.png" alt="World icon" />
                     <div class="connect-cap">Dos culturas</div>
                 </div>
 
-                <div class="v-sep" aria-hidden="true"></div>
-
                 <div class="connect-item">
                     <img class="connect-img" src="rings.png" alt="Rings icon" />
-                    <div class="connect-cap">Un gran amor</div>
+                    <div class="connect-cap">Gran amor</div>
                 </div>
-
-                <div class="v-sep" aria-hidden="true"></div>
 
                 <div class="connect-item">
                     <img class="connect-img" src="books.png" alt="Books icon" />
-                    <div class="connect-cap">Historias increíbles</div>
+                    <div class="connect-cap">Historias fascinantes</div>
                 </div>
-
-                <div class="v-sep" aria-hidden="true"></div>
 
                 <div class="connect-item">
                     <img class="connect-img" src="cafe.png" alt="Coffee icon" />
@@ -871,15 +1026,17 @@
             </div>
         </section>
 
+        <div id="rsvp" class="anchor" aria-hidden="true"></div>
+
         <section class="rsvp-section" aria-label="RSVP">
-            <div class="section-title lined-title">¿TE APUNTAS?</div>
+            <div class="section-title lined-title">¿VIENES?</div>
 
             <div class="btn-row" role="group" aria-label="RSVP buttons">
                 <a class="btn" href="rsvp-es.html">Sí, puedo</a>
                 <a class="btn" href="decline-es.html">No puedo asistir</a>
             </div>
 
-            <div class="cal-wrap" aria-label="Calendar">
+            <div class="cal-wrap" aria-label="Calendario">
                 <div class="cal-head" aria-label="September 2026">
                     <strong>Septiembre</strong>
                     <span>2026</span>
@@ -888,13 +1045,13 @@
                 <table class="month-cal" aria-label="Calendario septiembre 2026">
                     <thead>
                         <tr>
-                            <th>Lun</th>
-                            <th>Mar</th>
-                            <th>Mié</th>
-                            <th>Jue</th>
-                            <th>Vie</th>
-                            <th>Sáb</th>
-                            <th>Dom</th>
+                            <th>Lu</th>
+                            <th>Ma</th>
+                            <th>Mi</th>
+                            <th>Ju</th>
+                            <th>Vi</th>
+                            <th>Sá</th>
+                            <th>Do</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -936,7 +1093,7 @@
                             <td>18</td>
                             <td>19</td>
                             <td>20</td>
-                            </tr>
+                        </tr>
                         <tr>
                             <td>21</td>
                             <td>22</td>
@@ -960,25 +1117,32 @@
             </div>
         </section>
 
-        <section class="venue-section" aria-label="Maps">
+        <section class="venue-section" aria-label="Mapa">
             <div class="section-title lined-title">EL LUGAR</div>
-            <div class="map-postcard" aria-label="Map preview">
-                <iframe title="Masia Can Tarranc map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            <div class="venue-name">Can Tarranc. Events</div>
+            <div class="venue-address">
+                Camí de Sant Pere del Bosc, s/n,<br>
+                08490 Tordera, Barcelona, España
+            </div>
+            <div class="map-postcard" aria-label="Vista previa del mapa">
+                <iframe title="Mapa de Masia Can Tarranc" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                     allowfullscreen src="https://www.google.com/maps?q=Masia%20Can%20Tarranc&output=embed"></iframe>
             </div>
         </section>
 
-        <section class="info-links-section" aria-label="Info links">
+        <div id="info" class="anchor" aria-hidden="true"></div>
+
+        <section class="info-links-section" aria-label="Enlaces informativos">
             <div class="section-title lined-title">INFORMACIÓN</div>
 
             <div class="info-cards">
                 <a class="info-card" href="hotels-es.html" aria-label="Hoteles recomendados">
                     <img class="info-photo"
                         src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1400&q=80"
-                        alt="Hotels" loading="lazy" />
+                        alt="Hoteles" loading="lazy" />
                     <div class="info-body">
                         <h3 class="info-title">Hoteles recomendados</h3>
-                        <p class="info-text">Una pequeña selección de alojamientos en Blanes y alrededores.</p>
+                        <p class="info-text">Una selección de alojamientos en Blanes y alrededores.</p>
                         <span class="info-pill">Ver</span>
                     </div>
                 </a>
@@ -986,7 +1150,7 @@
                 <a class="info-card" href="blanes-es.html" aria-label="Cosas que hacer en Blanes">
                     <img class="info-photo"
                         src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80"
-                        alt="Things to do in Blanes" loading="lazy" />
+                        alt="Cosas que hacer en Blanes" loading="lazy" />
                     <div class="info-body">
                         <h3 class="info-title">Cosas que hacer en Blanes</h3>
                         <p class="info-text">Playas, naturaleza, actividades en familia, cultura y excursiones.</p>
@@ -996,10 +1160,18 @@
             </div>
         </section>
 
-        <footer>Save the date · 2026</footer>
+        <footer>Reserva la fecha · 2026</footer>
     </main>
 
     <script>
+        // Language dropdown navigation
+        const langSel = document.getElementById('langSel');
+        if (langSel) {
+            langSel.addEventListener('change', () => {
+                window.location.href = langSel.value;
+            });
+        }
+
         // Countdown to 4 September 2026 at 12:00 (local device time)
         const target = new Date("2026-09-04T12:00:00").getTime();
 

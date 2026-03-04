@@ -5,11 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Hoteles recomendados · Blanes</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
     rel="stylesheet">
+
   <style>
     :root {
       --gold: #926949;
@@ -19,6 +21,7 @@
       --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
       --radius: 16px;
       --max: 980px;
+
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-right: env(safe-area-inset-right, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -29,15 +32,24 @@
       box-sizing: border-box
     }
 
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       margin: 0;
       color: var(--blue);
       font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.7;
-      background: radial-gradient(1200px 650px at 50% 0%, rgba(255, 255, 255, .40), rgba(255, 255, 255, 0) 60%), linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .18)), url("fondo.jpg");
+      background:
+        radial-gradient(1200px 650px at 50% 0%, rgba(255, 255, 255, .40), rgba(255, 255, 255, 0) 60%),
+        linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .18)),
+        url("fondo.jpg");
       background-size: cover;
       background-position: center;
-      background-attachment: fixed
+      background-attachment: fixed;
     }
 
     @media (max-width:900px) {
@@ -48,25 +60,26 @@
 
     .wrap {
       max-width: var(--max);
+      width: 100%;
       margin: 0 auto;
-      padding: calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left))
+      padding: calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(28px + var(--safe-bottom)) calc(16px + var(--safe-left));
     }
 
-    .top {
+    /* NEW: top bar (back left, language right) */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 12px
-    }
-
-    .title {
-      font-family: 'Playfair Display', serif;
-      color: var(--gold);
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      font-size: 14px;
-      margin: 0
+      padding: calc(12px + var(--safe-top)) calc(12px + var(--safe-right)) 12px calc(12px + var(--safe-left));
+      margin: calc(-18px - var(--safe-top)) calc(-16px - var(--safe-right)) 12px calc(-16px - var(--safe-left));
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(146, 105, 73, 0.20);
     }
 
     .back {
@@ -82,7 +95,19 @@
       color: var(--gold);
       text-decoration: none;
       font-weight: 600;
-      font-size: 12px
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin: 0 0 12px;
+      text-align: center;
     }
 
     .card {
@@ -176,66 +201,427 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.18)
     }
+
+    .filters {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      text-align: left;
+    }
+
+    @media (max-width:900px) {
+      .filters {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(0, 53, 122, .72);
+      font-weight: 600;
+    }
+
+    .filter-input {
+      width: 100%;
+      min-height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(146, 105, 73, .32);
+      background: rgba(255, 255, 255, .78);
+      color: var(--blue);
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      margin-top: 14px;
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, .10);
+      background: rgba(255, 255, 255, .45);
+    }
+
+    .hotels-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 860px;
+      text-align: left;
+      font-size: 12px;
+      color: rgba(0, 53, 122, .92);
+    }
+
+    .hotels-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(236, 228, 219, .96);
+      color: rgba(86, 61, 41, .95);
+      font-size: 9px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+
+    .hotels-table th,
+    .hotels-table td {
+      padding: 8px 9px;
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      vertical-align: top;
+    }
+
+    .hotels-table th:nth-child(4),
+    .hotels-table td:nth-child(4) {
+      width: 130px;
+    }
+
+    .hotels-table th:nth-child(5),
+    .hotels-table td:nth-child(5) {
+      width: 130px;
+    }
+
+    .hotels-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .maps-link {
+      margin-top: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(146, 105, 73, .7);
+      background: rgba(255, 255, 255, 0.25);
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 9px;
+    }
+
+    .result-count {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(0, 53, 122, .72);
+      text-align: left;
+    }
   </style>
 </head>
 
 <body>
+  <!-- NEW: back left + language dropdown right -->
+  <header class="topbar" aria-label="Barra superior">
+    <a class="back" href="index-es.html#info">←</a>
+
+  </header>
+
   <main class="wrap">
-    <div class="top">
-      <h1 class="title">Hoteles recomendados</h1>
-      <a class="back" href="index-es.html">←</a>
-    </div>
+    <h1 class="title">Hoteles recomendados</h1>
 
-    <section class="card" aria-label="Intro">
+    <section class="card" aria-label="Introducción">
       <p style="margin:0;color:rgba(0,53,122,.78);font-size:13px;">
-        Aquí tienes algunos ejemplos. Actualizaremos esta lista pronto con nuestras recomendaciones concretas.
+        Lista de alojamientos con filtros por categoría, nombre/ubicación/notas y precio.
       </p>
-    </section>
-
-    <section class="grid" aria-label="Hotels list">
-      <article class="hotel">
-        <img class="photo"
-          src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1400&q=80"
-          alt="Hotel ejemplo 1" loading="lazy">
-        <div class="body">
-          <h2 class="name">Hotel 1 (Ejemplo)</h2>
-          <p class="meta">Blanes · Cerca del centro</p>
-          <div class="row">
-            <a class="link" href="#" target="_blank" rel="noopener">Ver</a>
-            <span class="tag">Centro</span>
-          </div>
+      <div class="filters" aria-label="Filtros">
+        <div class="filter-field">
+          <label class="filter-label" for="categoryFilter">Categoría</label>
+          <select id="categoryFilter" class="filter-input">
+            <option value="">Todas</option>
+            <option value="Presupuesto">Presupuesto</option>
+            <option value="Media">Media</option>
+            <option value="Confort">Confort</option>
+          </select>
         </div>
-      </article>
-
-      <article class="hotel">
-        <img class="photo"
-          src="https://images.unsplash.com/photo-1501117716987-c8e2a20fdb60?auto=format&fit=crop&w=1400&q=80"
-          alt="Hotel ejemplo 2" loading="lazy">
-        <div class="body">
-          <h2 class="name">Hotel 2 (Ejemplo)</h2>
-          <p class="meta">Blanes · Cerca de la playa</p>
-          <div class="row">
-            <a class="link" href="#" target="_blank" rel="noopener">Ver</a>
-            <span class="tag">Playa</span>
-          </div>
+        <div class="filter-field">
+          <label class="filter-label" for="searchFilter">Nombre, lugar o notas</label>
+          <input id="searchFilter" class="filter-input" type="text" placeholder="Buscar..." />
         </div>
-      </article>
-
-      <article class="hotel">
-        <img class="photo"
-          src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=80"
-          alt="Hotel ejemplo 3" loading="lazy">
-        <div class="body">
-          <h2 class="name">Hotel 3 (Ejemplo)</h2>
-          <p class="meta">Alrededores · Opción económica</p>
-          <div class="row">
-            <a class="link" href="#" target="_blank" rel="noopener">Ver</a>
-            <span class="tag">Económico</span>
-          </div>
+        <div class="filter-field">
+          <label class="filter-label" for="priceFilter">Precio máximo (€)</label>
+          <input id="priceFilter" class="filter-input" type="number" min="0" step="5" placeholder="Sin límite" />
         </div>
-      </article>
+      </div>
+
+      <p id="resultCount" class="result-count"></p>
+      <a class="maps-link" href="https://www.google.com/maps/placelists/list/g1ASbwdEb9tdQYde6" target="_blank"
+        rel="noopener">
+        Google Maps - Lista de Hoteles
+      </a>
+
+      <div class="table-wrap">
+        <table class="hotels-table" aria-label="Lista de hoteles">
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Nombre del alojamiento</th>
+              <th>Ubicación</th>
+              <th>Distancia a Can Tarranc (aprox.)</th>
+              <th>Precio medio por noche / alojamiento (€)</th>
+              <th>Notas</th>
+            </tr>
+          </thead>
+          <tbody id="hotelsBody">
+            <tr>
+              <td>Presupuesto</td>
+              <td>Hostal Miranda</td>
+              <td>Centro de Blanes</td>
+              <td>10 min</td>
+              <td data-price="85">85</td>
+              <td>Pensión sencilla, céntrica</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Hotel Costa Brava</td>
+              <td>Centro de Blanes</td>
+              <td>10 min</td>
+              <td data-price="95">95</td>
+              <td>Hotel de 3 estrellas, cerca de la playa</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Camping Bella</td>
+              <td>Zona de playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="90">90</td>
+              <td>Bungalows y casas móviles</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Aiguaneu S’Auguer</td>
+              <td>Casco antiguo de Blanes</td>
+              <td>12 min</td>
+              <td data-price="100">100</td>
+              <td>Apartamentos cerca del mar</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Hotel Checkin Blanes</td>
+              <td>Playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="95">95</td>
+              <td>Hotel grande, junto a la playa</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Mallorca Boutique Hotel</td>
+              <td>Centro de Blanes</td>
+              <td>10 min</td>
+              <td data-price="105">105</td>
+              <td>Pequeño hotel boutique</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Hotel Alhambra</td>
+              <td>Santa Susanna</td>
+              <td>20 min</td>
+              <td data-price="110">110</td>
+              <td>Hotel económico popular</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Hostal Bonavista</td>
+              <td>Blanes</td>
+              <td>10 min</td>
+              <td data-price="80">80</td>
+              <td>Alojamiento muy sencillo</td>
+            </tr>
+            <tr>
+              <td>Presupuesto</td>
+              <td>Stella Maris</td>
+              <td>Zona de playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="100">100</td>
+              <td>Hotel vacacional clásico</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Hotel Pimar & Spa</td>
+              <td>Playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="140">140</td>
+              <td>Frente al mar con spa</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Hotel Beverly Park & Spa</td>
+              <td>Playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="155">155</td>
+              <td>Hotel moderno con wellness</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Apartamento Marina Playa</td>
+              <td>Puerto de Blanes</td>
+              <td>12 min</td>
+              <td data-price="150">150</td>
+              <td>Apartamento vacacional con vistas al mar</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Hotel Horitzo by Pierre & Vacances</td>
+              <td>Playa de Blanespromenade</td>
+              <td>12 min</td>
+              <td data-price="160">160</td>
+              <td>Hotel boutique en primera línea de playa</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Hotel Blaucel</td>
+              <td>Playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="145">145</td>
+              <td>Hotel vacacional popular</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Hotel Blaumar</td>
+              <td>Playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="150">150</td>
+              <td>Moderno, cerca de la playa</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Hotel Esplendid</td>
+              <td>Blanes</td>
+              <td>15 min</td>
+              <td data-price="135">135</td>
+              <td>Gran hotel vacacional con piscinas</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Pierre & Vacances Blanes Playa</td>
+              <td>Playa de Blanes</td>
+              <td>12 min</td>
+              <td data-price="155">155</td>
+              <td>Apartamentos vacacionales frente al mar</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Apartaments Elvira</td>
+              <td>Centro de Blanes</td>
+              <td>10 min</td>
+              <td data-price="130">130</td>
+              <td>Apartamentos céntricos</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Camping Voramar</td>
+              <td>Zona de playa de Blanes</td>
+              <td>18 min</td>
+              <td data-price="120">120</td>
+              <td>Casas móviles y bungalows</td>
+            </tr>
+            <tr>
+              <td>Media</td>
+              <td>Camping Resort Els Pins</td>
+              <td>Malgrat de Mar</td>
+              <td>20 min</td>
+              <td data-price="135">135</td>
+              <td>Camping resort con piscina</td>
+            </tr>
+            <tr>
+              <td>Confort</td>
+              <td>Petit Palau</td>
+              <td>Zona de playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="185">185</td>
+              <td>Hotel boutique solo adultos</td>
+            </tr>
+            <tr>
+              <td>Confort</td>
+              <td>Casa Indiana Boutique Hotel</td>
+              <td>Casco antiguo de Blanes</td>
+              <td>12 min</td>
+              <td data-price="195">195</td>
+              <td>Villa histórica, estilo boutique</td>
+            </tr>
+            <tr>
+              <td>Confort</td>
+              <td>Europa Family Apartments</td>
+              <td>Playa de Blanes</td>
+              <td>15 min</td>
+              <td data-price="180">180</td>
+              <td>Apartamentos amplios para familias</td>
+            </tr>
+            <tr>
+              <td>Confort</td>
+              <td>Apartaments Blanes-Condal</td>
+              <td>Centro de Blanes</td>
+              <td>10 min</td>
+              <td data-price="175">175</td>
+              <td>Apartamentos vacacionales modernos</td>
+            </tr>
+            <tr>
+              <td>Confort</td>
+              <td>Hostal Sa Malica</td>
+              <td>Puerto de Blanes</td>
+              <td>12 min</td>
+              <td data-price="170">170</td>
+              <td>Alojamiento con encanto junto al mar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
+
+  <script>
+    const categoryFilter = document.getElementById('categoryFilter');
+    const searchFilter = document.getElementById('searchFilter');
+    const priceFilter = document.getElementById('priceFilter');
+    const hotelsBody = document.getElementById('hotelsBody');
+    const resultCount = document.getElementById('resultCount');
+    const rows = Array.from(hotelsBody.querySelectorAll('tr'));
+
+    function normalize(value) {
+      return value
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function applyFilters() {
+      const selectedCategory = categoryFilter.value;
+      const searchValue = normalize(searchFilter.value.trim());
+      const maxPrice = Number(priceFilter.value);
+      const hasPriceFilter = priceFilter.value.trim() !== '' && !Number.isNaN(maxPrice);
+      let visibleCount = 0;
+
+      rows.forEach((row) => {
+        const category = row.cells[0].textContent.trim();
+        const textBlob = normalize(Array.from(row.cells).map((c) => c.textContent).join(' '));
+        const rowPrice = Number(row.cells[4].dataset.price);
+
+        const categoryMatch = !selectedCategory || category === selectedCategory;
+        const searchMatch = !searchValue || textBlob.includes(searchValue);
+        const priceMatch = !hasPriceFilter || rowPrice <= maxPrice;
+        const show = categoryMatch && searchMatch && priceMatch;
+
+        row.style.display = show ? '' : 'none';
+        if (show) visibleCount += 1;
+      });
+
+      resultCount.textContent = `${visibleCount} resultados`;
+    }
+
+    categoryFilter.addEventListener('change', applyFilters);
+    searchFilter.addEventListener('input', applyFilters);
+    priceFilter.addEventListener('input', applyFilters);
+    applyFilters();
+  </script>
 </body>
 
 </html>

@@ -204,42 +204,32 @@
       display: none !important;
     }
 
-    /* NEW: checkbox row */
-    .check-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(146, 105, 73, 0.35);
-      background: rgba(255, 255, 255, 0.18);
+    /* Red checkbox option (same design, red) */
+    .choice.choice--red {
+      border-color: rgba(209, 27, 45, 0.55);
+      background: rgba(209, 27, 45, 0.06);
     }
 
-    .check-row input[type="checkbox"] {
-      margin-top: 2px;
-      accent-color: var(--gold);
-      width: 18px;
-      height: 18px;
-      flex: 0 0 auto;
-    }
-
-    .check-row .check-text {
-      margin: 0;
+    .choice.choice--red span {
+      color: #d11b2d;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
       font-size: 12.5px;
       line-height: 1.45;
-      color: rgba(0, 53, 122, 0.86);
-      letter-spacing: 0.01em;
-      text-transform: none;
-      font-weight: 500;
+    }
+
+    .choice.choice--red input {
+      accent-color: #d11b2d;
     }
   </style>
 </head>
 
 <body>
   <main class="wrap">
-    <section class="card" aria-label="RSVP form">
+    <section class="card" aria-label="Formulario RSVP">
       <h1>RSVP</h1>
-      <p class="sub">Por favor confirma tu asistencia antes del <strong>01/05/2026</strong>.</p>
+      <p class="sub">Por favor confirma tu asistencia antes del <strong>01.05.2026</strong>.</p>
 
       <form id="rsvpForm" method="POST"
         action="https://script.google.com/macros/s/AKfycbwK6S9Os9V6Qwcnx9j58YM2-HfwbwQ1Lk53IXBbLglVhE6SflS4ESsRX8JBblsl57ak/exec">
@@ -259,29 +249,18 @@
           </div>
 
           <div class="field full">
-            <label>¿Vas a asistir?</label>
-            <div class="choices" role="radiogroup" aria-label="Will you attend">
+            <label>¿Asistirás? *</label>
+            <div class="choices" role="radiogroup" aria-label="Asistencia">
               <label class="choice">
-                <input type="radio" name="attend" value="yes" checked />
+                <input type="radio" name="attend" value="yes" required checked />
                 <span>Sí</span>
               </label>
             </div>
           </div>
 
-          <!-- NEW: email permission checkbox -->
-          <div class="field full">
-            <label for="emailUpdates">Actualizaciones por correo</label>
-            <label class="check-row" for="emailUpdates">
-              <input id="emailUpdates" type="checkbox" name="emailUpdates" value="yes" />
-              <span class="check-text">
-                Sí, podéis enviarme un correo cuando tengáis el plan del día y otros detalles de la boda.
-              </span>
-            </label>
-          </div>
-
           <div class="field">
-            <label>¿Vienes con acompañante (+1)?</label>
-            <div class="choices" role="radiogroup" aria-label="Plus one">
+            <label>¿Traerás acompañante (+1)?</label>
+            <div class="choices" role="radiogroup" aria-label="Acompañante">
               <label class="choice">
                 <input type="radio" name="plusOne" value="yes" />
                 <span>Sí</span>
@@ -295,7 +274,7 @@
 
           <div class="field">
             <label>¿Niños?</label>
-            <div class="choices" role="radiogroup" aria-label="Children">
+            <div class="choices" role="radiogroup" aria-label="Niños">
               <label class="choice">
                 <input type="radio" name="children" value="yes" />
                 <span>Sí</span>
@@ -308,9 +287,9 @@
           </div>
 
           <div class="field full is-hidden" id="childrenCountField">
-            <label for="childrenCount">Si sí: ¿cuántos?</label>
+            <label for="childrenCount">Si hay niños: ¿cuántos?</label>
             <select id="childrenCount" name="childrenCount">
-              <option value="">Elige…</option>
+              <option value="">Selecciona…</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -318,15 +297,15 @@
           </div>
 
           <div class="field full">
-            <label>¿Dieta / intolerancias?</label>
-            <div class="choices" role="group" aria-label="Dietary restrictions">
+            <label>Dieta / intolerancias?</label>
+            <div class="choices" role="group" aria-label="Restricciones alimentarias">
               <label class="choice">
                 <input type="checkbox" name="dietary[]" value="Vegan">
-                <span>Vegana</span>
+                <span>Vegano/a</span>
               </label>
               <label class="choice">
                 <input type="checkbox" name="dietary[]" value="Vegetarian">
-                <span>Vegetariana</span>
+                <span>Vegetariano/a</span>
               </label>
               <label class="choice">
                 <input type="checkbox" name="dietary[]" value="Gluten-free">
@@ -344,22 +323,35 @@
           </div>
 
           <div class="field full">
-            <label for="dietOther">Si es “Otro”, indícalo (opcional)</label>
-            <textarea id="dietOther" name="dietOther" placeholder="por ejemplo: alergias, detalles…"></textarea>
+            <label for="dietOther">Si es "Otro", indícalo (opcional)</label>
+            <textarea id="dietOther" name="dietOther" placeholder="p.ej. alergias, detalles…"></textarea>
           </div>
 
           <div class="field full">
-            <label for="danceSong">Si hubiera una canción que te haga ir directo a la pista… ¿cuál sería?</label>
+            <label for="danceSong">Si hay una canción que te lleva directo a la pista, ¿cuál sería?</label>
             <input id="danceSong" name="danceSong" type="text" maxlength="30" placeholder="Máx. 30 caracteres" />
+          </div>
+
+          <div class="field full">
+            <label>Actualizaciones por correo</label>
+            <div class="choices" role="group" aria-label="Permiso de actualizaciones por correo">
+              <label class="choice choice--red">
+                <!-- IMPORTANT: name must be exactly emailUpdates so Code.gs can save it -->
+                <input type="checkbox" name="emailUpdates" value="yes" />
+                <span>Sí, por favor envíame un correo cuando estén listos el horario del día y más detalles de la
+                  boda.</span>
+              </label>
+            </div>
           </div>
         </div>
 
         <p class="hint">
-          * Obligatorio. Usaremos tus datos solo para la organización.
+          * Campo obligatorio. Usaremos tus datos solo para la organización.
         </p>
 
         <div class="actions">
-          <a class="btn" href="index-es.html">Volver</a>
+          <!-- IMPORTANT: go back to the RSVP section, not top of page -->
+          <a class="btn" href="index-es.html#rsvp">Volver</a>
           <button class="btn primary" type="submit">Enviar</button>
         </div>
       </form>
@@ -367,7 +359,7 @@
   </main>
 
   <script>
-    // children count show/hide
+    // mostrar/ocultar cantidad de niños
     const childrenRadios = document.querySelectorAll('input[name="children"]');
     const childrenCountField = document.getElementById('childrenCountField');
     const childrenCountSelect = document.getElementById('childrenCount');

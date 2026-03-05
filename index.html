@@ -282,6 +282,7 @@
         .brace-frame {
             position: relative;
             padding: 14px 10px 8px;
+            display: inline-block;
         }
 
         .brace-frame::before,
@@ -314,6 +315,8 @@
             gap: 10px;
             flex-wrap: wrap;
             padding: 2px 14px 6px;
+            width: fit-content;
+            margin: 0 auto;
         }
 
         .unit {
@@ -376,16 +379,6 @@
 
         /* Mobile: keep phrase ONE line, keep countdown one row */
         @media (max-width: 520px) {
-            .countdown-wrap {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            .brace-frame {
-                padding-left: 6px;
-                padding-right: 6px;
-            }
-
             .countdown-phrase {
                 white-space: nowrap;
                 font-size: 11px;
@@ -399,7 +392,7 @@
 
             .timer {
                 flex-wrap: nowrap;
-                gap: 4px;
+                gap: 6px;
                 padding-left: 0;
                 padding-right: 0;
             }
@@ -411,25 +404,24 @@
 
             .icon-sep {
                 display: block;
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
                 margin-top: 8px;
                 opacity: 0.88;
             }
 
             .icon-sep svg {
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
             }
 
             .value {
-                font-size: 21px;
+                font-size: 22px;
             }
 
             .label {
-                font-size: 8px;
-                letter-spacing: 0.07em;
-                white-space: nowrap;
+                font-size: 9px;
+                letter-spacing: 0.10em;
             }
         }
 

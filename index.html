@@ -280,31 +280,31 @@
         }
 
         .brace-frame {
-            position: relative;
-            padding: 14px 10px 8px;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 0 8px;
         }
 
         .brace-frame::before,
         .brace-frame::after {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            position: static;
+            transform: none;
             font-family: 'Playfair Display', serif;
             font-size: 60px;
-            line-height: 1;
+            line-height: 0.85;
             color: rgba(146, 105, 73, 0.30);
             font-weight: 400;
             pointer-events: none;
+            flex: 0 0 auto;
         }
 
         .brace-frame::before {
-            left: -10px;
             content: "{";
         }
 
         .brace-frame::after {
-            right: -10px;
             content: "}";
         }
 
@@ -329,6 +329,7 @@
             font-weight: 600;
             font-size: clamp(26px, 5vw, 34px);
             line-height: 1.05;
+            font-variant-numeric: tabular-nums;
             color: var(--gold);
         }
 
@@ -421,7 +422,8 @@
 
             .label {
                 font-size: 9px;
-                letter-spacing: 0.10em;
+                letter-spacing: 0.08em;
+                white-space: nowrap;
             }
         }
 

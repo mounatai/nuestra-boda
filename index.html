@@ -376,6 +376,16 @@
 
         /* Mobile: keep phrase ONE line, keep countdown one row */
         @media (max-width: 520px) {
+            .countdown-wrap {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .brace-frame {
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+
             .countdown-phrase {
                 white-space: nowrap;
                 font-size: 11px;
@@ -389,7 +399,7 @@
 
             .timer {
                 flex-wrap: nowrap;
-                gap: 6px;
+                gap: 4px;
                 padding-left: 0;
                 padding-right: 0;
             }
@@ -401,24 +411,25 @@
 
             .icon-sep {
                 display: block;
-                width: 12px;
-                height: 12px;
+                width: 10px;
+                height: 10px;
                 margin-top: 8px;
                 opacity: 0.88;
             }
 
             .icon-sep svg {
-                width: 12px;
-                height: 12px;
+                width: 10px;
+                height: 10px;
             }
 
             .value {
-                font-size: 22px;
+                font-size: 21px;
             }
 
             .label {
-                font-size: 9px;
-                letter-spacing: 0.10em;
+                font-size: 8px;
+                letter-spacing: 0.07em;
+                white-space: nowrap;
             }
         }
 
